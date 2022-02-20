@@ -21,8 +21,8 @@ if __name__ == '__main__':
         Y_test = np.array(f['y_test'])
         Y_test = np.array([sublist[0] for sublist in Y_test])
 
-    learning_rate_fcn = lambda x: continuous_learning_rate(x, c_0=2)
-    network.sgd_train(X_train, Y_train, 1000000, piecewise_learning_rate, batch_size=1, trace=True)
+    learning_rate_fcn = lambda x: continuous_learning_rate(x, .1, 1, 0) #Constant learning rate seems to perform way better
+    network.sgd_train(X_train, Y_train, 100000, learning_rate_fcn, batch_size=1, trace=True)
 
     accuracy_counter = 0
     for i in range(len(X_test)):
