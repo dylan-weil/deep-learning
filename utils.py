@@ -4,8 +4,9 @@ def continuous_learning_rate(step_number, c_0=1, c_1=1, c_2=1):
     return c_0/(c_2 * step_number + c_1)
 
 
-def piecewise_learning_rate(step_number, c_0 = 10):
-    return c_0**-np.floor(np.log10(step_number + 1))
+def piecewise_learning_rate(step_number, c_0=10, c_1=10):
+    return c_0**-np.floor(np.log10(step_number + 1)/np.log10(c_1))
+    #The value of c_1 is the base of the log, via the change of base formula for logs
 
 
 def sigmoid(z):
