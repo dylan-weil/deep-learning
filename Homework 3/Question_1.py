@@ -7,9 +7,12 @@ from torchvision.datasets.folder import default_loader
 import torch.optim as optim
 import torch.nn as nn
 import torch.nn.functional as F
-from utils import continuous_learning_rate, piecewise_learning_rate
+# from utils import continuous_learning_rate, piecewise_learning_rate
 from torch.autograd import Variable
 import itertools as iter
+
+def piecewise_learning_rate(step_number, c_0=10, c_1=10):
+    return c_0**-np.floor(np.log10(step_number + 1)/np.log10(c_1))
 
 
 training_transformations = transforms.Compose([transforms.RandomHorizontalFlip(p=0.5),
